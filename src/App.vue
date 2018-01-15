@@ -2,17 +2,28 @@
   <div id="app">
     <header>
       <span>Vue.js PWA</span>
+      <div class="tab-container" v-if="rounds.length > 0" v-for="round in rounds">
+        <div class="tab">
+          <div>ROUND {{ round.count }}</div>
+        </div>
+      </div>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script>
+import * as db from './scripts/database';
+
 export default {
-  name: 'app'
+  name: 'app',
+  computed: {
+    rounds: function () {
+      return db.fetchRounds();
+    },
+  },
 }
 </script>
 
@@ -22,7 +33,7 @@ body {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', 'Noto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -50,5 +61,20 @@ header span {
   font-weight: 400;
   box-sizing: border-box;
   padding-top: 16px;
+}
+
+.tab-container {
+
+}
+
+div.tab {
+  height: 48px;
+  padding: 8px;
+  font-size: 14px;
+  overflow: hidden;
+  user-select: none;
+}
+
+div.tab[selected] {
 }
 </style>
