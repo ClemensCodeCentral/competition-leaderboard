@@ -1,6 +1,6 @@
 # ccc-competition-leaderboard
 
-> A leaderboard for our point-based competitions
+> A leaderboard for Code Central's point-based competitions
 
 
 ## Build Setup
