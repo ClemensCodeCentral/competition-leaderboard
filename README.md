@@ -1,31 +1,39 @@
-# ccc-competition-leaderboard
-
+# Code Central Competition Leaderboard
 > A leaderboard for Code Central's point-based competitions
+To see a sample, go to the deployed [site](https://codecentralclub.firebaseapp.com).
 
-
-## Build Setup
+## Developing
+### Build
+This project uses `vue-loader`, which provides easy setup for VueJS. For a 
+detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ``` bash
-# install dependencies
+# Install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# Serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
+# Build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
+# Build for production and view the bundle analyzer report
 npm run build --report
 
-# run unit tests
+# Run unit tests
 npm run unit
 
-# run e2e tests
+# Run e2e tests
 npm run e2e
 
-# run all tests
+# Run all tests
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Deploy
+This site uses Firebase Hosting as its backend. Install the Firebase CLI tools
+and then run:
+
+```bash
+firebase deploy
+```
