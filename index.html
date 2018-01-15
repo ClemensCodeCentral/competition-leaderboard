@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ccc-competition-leaderboard</title>
+  <title>Code Central Leaderboard</title>
+  <meta name="description" content="A leaderboard for Code Central's competitions">
   <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-16x16.png">
   <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
@@ -16,7 +17,7 @@
   <!-- Add to home screen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="ccc-competition-leaderboard">
+  <meta name="apple-mobile-web-app-title" content="CC Leaderboard">
   <link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/apple-touch-icon-152x152.png">
   <link rel="mask-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/safari-pinned-tab.svg" color="#4DBA87">
   <!-- Add to home screen for Windows -->
@@ -27,17 +28,6 @@
           if (file.match(/\.(js|css)$/)) { %>
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
   <% }}} %>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .catch((err) => {
-            console.error('Service worker registration failed', err);
-          });
-      });
-    }
-  </script>
-
 
   <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-firestore.js"></script>
@@ -56,21 +46,6 @@
 </head>
 
 <body>
-  <!--  Three sections -->
-  <header>Leaderboard</header>
-  <div>
-    <!-- Dynamically list competitions -->
-  </div>
-  <main id="app">
-    <div>
-
-    </div>
-    <div v-for="entrant in entrants">
-      <board-item v-bind:name="entrant.name" v-bind:place="entrant.place" v-bind:points="entrant.points" v-bind:imageSrc="entrant.image">
-      </board-item>
-    </div>
-  </main>
-
   <noscript>
     This is your fallback content in case JavaScript fails to load.
   </noscript>
