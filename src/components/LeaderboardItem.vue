@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
-    <span class="place">{{ place }}</span>
-    <img src="{{ imageSrc }}">
+    <div class="place-tag"><b>{{ place }}</b></div>
+    <img :src="imageSrc">
     <div>
-      <div>{{ name }}</div>
-      <div>{{ points }}</div>
+      <div class="name-tag">{{ name }}</div>
+      <div class="points-tag">{{ points }}</div>
     </div>
   </div>
 </template>
@@ -12,20 +12,22 @@
 <script>
 export default {
   name: "leaderboard-item",
-  data() {
-    return {
-      name,
-      points,
-      place,
-      imageSrc
-    };
-  }
+  props: ["place", "name", "points", "imageSrc"]
 };
 </script>
 
 <style>
 img {
+  margin: 8px;
   height: 32px;
   width: 32px;
+}
+
+.place-tag {
+  font-size: 24px;
+}
+
+.name-tag {
+  font-size: 14px;
 }
 </style>
