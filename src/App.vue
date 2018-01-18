@@ -1,19 +1,14 @@
 <template>
   <div id="app">
-    <header class="toolbar">
-      <a href="/" class="logo"></a>
-      <span>Leaderboard <span class="beta-tag"><b>BETA</b></span>
-      </span>
-    </header>
-    <header v-if="true">
-      <div class="tab-container">
-        <div class="tab" v-for="round in rounds">
-          <span class="tab-content">
-            <router-link :to="'/round/' + round.count">ROUND {{ round.count }}</router-link>
-          </span>
-        </div>
+    <md-toolbar md-mode="reveal">
+      <div>
+        <a href="/" class="logo"></a>
+        <span class="md-title">Leaderboard <span class="md-caption beta-tag"><b>PREVIEW</b></span></span>
       </div>
-    </header>
+    </md-toolbar>
+    <md-tabs md-sync-route v-if="rounds.length > 0">
+      <md-tab v-for="round in rounds" :key="round.count" :md-label="'Round ' + round.count" :to="'/round/' + round.count"></md-tab>
+    </md-tabs>
     <main>
       <router-view></router-view>
     </main>
@@ -28,11 +23,42 @@ import * as db from "./scripts/database";
 export default {
   name: "app",
   components: {
-    "site-footer": SiteFooter
+    SiteFooter
   },
   data() {
     return {
-      
+      rounds: [
+        {
+          problems: {
+            "id-1": true,
+            "id-2": true
+          },
+          count: 1,
+          season: 1
+        },
+        {
+          problems: {
+            "id-1": true,
+            "id-2": true
+          },
+          count: 2,
+          season: 1
+        }
+      ],
+      round: 1,
+      contestants: [
+        {
+          "id-1": {
+            name: "Jeff Dean",
+            points: 9001,
+            problems: {
+              anotherid: true
+            }
+          },
+          imageSrc:
+            "http://i0.kym-cdn.com/entries/icons/medium/000/023/880/doggo.jpg"
+        }
+      ]
     };
   }
 };
@@ -55,32 +81,6 @@ main {
   min-height: 70vh;
 }
 
-header {
-  margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
-  background-color: #f5f5f5;
-  color: #000000;
-  opacity: 87%;
-}
-
-header span {
-  display: inline-block;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  font-weight: 400;
-  vertical-align: middle;
-}
-
-header.toolbar {
-  padding-top: 16px;
-}
-
-header:not(.toolbar) {
-  height: 48px;
-}
-
 .logo {
   vertical-align: middle;
   display: inline-block;
@@ -93,50 +93,6 @@ header:not(.toolbar) {
 .beta-tag {
   font-size: 12px;
   display: inline;
-  color: #000000;
-}
-
-.tab-container {
-  display: flex;
-  align-items: flex-start;
-
-  height: 48px;
-  font-size: 14px;
-  font-weight: 500;
-  overflow: hidden;
-  user-select: none;
-
-  flex: 1 1 auto;
-  flex-direction: row;
-}
-
-.tab {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 auto;
-
-  position: relative;
-  padding: 0 8px;
-  overflow: hidden;
-  cursor: pointer;
-  vertical-align: middle;
-}
-
-.tab-content > * {
-  height: 100%;
-  transition: opacity 0.1s cubic-bezier(0.4, 0, 1, 1);
-  align-items: bottom;
-  justify-content: center;
-  flex: 1 1 auto;
-}
-
-.tab-content > a {
-  text-decoration: none;
-  color: #000000;
-}
-
-.tab-content[selected] > a {
   color: #000000;
 }
 </style>
